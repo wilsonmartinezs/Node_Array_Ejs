@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+    <div class='contenedor'>
+        <h1>Registro de Notas</h1>
+        <form action='/Registrar' method='post'>
+               <label> Nombre</label><input type="text" name="Nombre"><br>
+               <label> Nota1</label><input type="text" name="Nota1"><br>
+               <label> Nota2</label><input type="text" name="Nota2"><br>
+                <label>Nota3</label><input type="text" name="Nota3"><br>
+                <input type="submit" value='Registrar' class="registrar"><br>
+        </form>
+        </div>
+<table>
+        <th>Nombre</th>
+        <th>Nota1</th>
+        <th>Nota2</th>
+        <th>Nota3</th>
+        <th>Definitiva</th>
+        <th>Estado</th>
+        <th>Eliminar</th>
+              <% for(var i=0;i<listado.length;i++){
+                 var definitiva = (parseFloat(listado[i].Nota1) +parseFloat(listado[i].Nota2)+parseFloat(listado[i].Nota3))/3;
+                   %>
+                 <tr><td><%=listado[i].Nombre %></td>
+                  <td><%=listado[i].Nota1 %></td>
+                  <td><%=listado[i].Nota2 %></td>
+                  <td><%=listado[i].Nota3 %></td>
+                  <td><%= definitiva %></td>
+                   <td><% if(definitiva>3){%>
+                         Aprobado
+                  <% }else{%>
+                       No aprobado 
+                  <%} %></td>
+                   <td><a href="/Eliminar/<%=i %>">X</a></td></tr>
+              <% }  
+              %>
+  </table>
+</body>
+</html>
